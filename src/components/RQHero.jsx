@@ -1,10 +1,20 @@
 import React from "react";
+import { useQuery } from "react-query";
+import { FetchAll } from "../global/FetchAPI";
 
 export const RQHero = () => {
+    const qHero = useQuery(["heros"], FetchAll);
+    if (qHero.isLoading) return <h1>Loading...</h1>;
+
     return (
         <React.Fragment>
             <h1>RQHero</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui aliquid quisquam est ipsam corporis sequi quod. Molestias veniam voluptatum odit quia iste sunt commodi. Ab velit qui vel sunt voluptates.</p>
+            {qHero.data?.map((hero) => (
+                <main key={hero.id}>
+                    <h3>{hero.name}</h3>
+                    <p>{hero.alterEgo}</p>
+                </main>
+            ))}
         </React.Fragment>
     );
 };
