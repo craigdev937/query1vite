@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query-devtools";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Main } from "../routes/Main";
 
 const RQClient = new QueryClient();
@@ -11,7 +11,10 @@ export const App = () => {
         <React.Fragment>
             <QueryClientProvider client={RQClient}>
                 <Main />
-                <ReactQueryDevtools initialIsOpen={false} />
+                <ReactQueryDevtools 
+                    initialIsOpen={false} 
+                    position="bottom-right" 
+                />
             </QueryClientProvider>
         </React.Fragment>
     );
